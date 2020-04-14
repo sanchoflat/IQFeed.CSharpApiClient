@@ -12,7 +12,7 @@ namespace IQFeed.CSharpApiClient
     // ReSharper disable once InconsistentNaming
     public static class IQFeedLauncher
     {
-        public static void Start(string login = null, string password = null, string productId = null, string productVersion = null, int connectionTimeoutMs = 100, int retry = 50)
+        public static void Start(string login = null, string password = null, string productId = null, string productVersion = null, string pathToExe = null, int connectionTimeoutMs = 100, int retry = 50)
         {
             var appSettings = ConfigurationManager.AppSettings;
 
@@ -37,7 +37,7 @@ namespace IQFeed.CSharpApiClient
                              "1.0.0.0";
 
             var iqConnectParameters = $"-product {productId} -version {productVersion} -login {login} -password {password} -autoconnect";
-            Process.Start("IQConnect.exe", iqConnectParameters);
+            Process.Start(pathToExe, iqConnectParameters);
 
             WaitForAdminPortReady(connectionTimeoutMs, retry);
             WaitForServerConnectedStatus(IQFeedDefault.Hostname, IQFeedDefault.AdminPort);
