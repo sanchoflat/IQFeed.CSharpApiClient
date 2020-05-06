@@ -104,5 +104,16 @@ namespace IQFeed.CSharpApiClient.Lookup
                 LookupDefault.BufferSize,
                 new HistoricalMessageDoubleHandler());
         }
+
+        public static LookupClient<double> CreateNew(int numberOfClients, TimeSpan timeSpan)
+        {
+            return CreateNew(
+                IQFeedDefault.Hostname,
+                IQFeedDefault.LookupPort,
+                numberOfClients,
+                timeSpan,
+                LookupDefault.BufferSize,
+                new HistoricalMessageDoubleHandler());
+        }
     }
 }
